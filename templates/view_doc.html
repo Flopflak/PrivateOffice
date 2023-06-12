@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Document Viewer{% endblock %}
+
+{% block header %}<h1 style="text-align: left;">{{ filename }}</h1>{% endblock %}
+
+{% block content %}
+    <div class="text_editor">
+        <p>{{ content }}</p>
+    </div>
+{% endblock %}
