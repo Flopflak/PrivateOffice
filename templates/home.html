@@ -6,8 +6,9 @@
 
 {% block content %}
   <div class="docs">
+    <a href="/create_file" style="font-weight: bolder; float: right; font-size: large; margin-top: 1.5px;">+</a>
     <h2>Documents</h2>
-    <div>
+    <div style="padding-left: 15px;">
         <ul>
             {% for file_name in file_names %}
                 <li><a href="{{ url_for('view_document', filename=file_name) }}">{{ file_name }}</a></li>

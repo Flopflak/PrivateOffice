@@ -94,8 +94,41 @@
     text-align: left;
   }
 
+  .options {
+    background-color: rgb(220, 220, 220);
+    margin: 0px 30px 0px 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 15px;
+    text-align: left;
+    display: flex;
+  }
+
+  .options button {
+    display: block;
+    margin:2px 8px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 32px rgba(0, 0, 0, 0.2);
+    width: 15%;
+    height: 40px;
+    background-color: rgb(220, 220, 220);
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .docs {
+    background-color: rgb(220, 220, 220);
+    margin: auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 25vw;
+    text-align: left;
+  }
+
   .text_editor {
-    margin: 50px;
+    margin: 20px 30px 0px 30px;
     padding: 10px;
     height: fit-content;
     border-radius: 15px;

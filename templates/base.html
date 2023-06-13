@@ -1,6 +1,10 @@
 <!doctype html>
 <title>{% block title %}{% endblock %} - PrivateOffice</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='functions.js') }}"></script>
+<head>
+  {% block head %}{% endblock %}
+</head>
 <section class="content">
   <header>
     {% block header %}{% endblock %}

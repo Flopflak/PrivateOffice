@@ -2,10 +2,54 @@
 
 {% block title %}Document Viewer{% endblock %}
 
-{% block header %}<h1 style="text-align: left;">{{ filename }}</h1>{% endblock %}
+{% block header %}<h1 style="text-align: left;" contenteditable="true" id="name">{{ filename }}</h1>{% endblock %}
 
 {% block content %}
+    <div class="options"><button onclick="handleButtonClick()">Save</button><button onclick="window.location = '/'">Home</button></div>
     <div class="text_editor">
-        <p>{{ content }}</p>
+        <p contenteditable="true" id="content">{{ content }}</p>
     </div>
+    <script>
+        function sendPostRequest(url, content) {
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(content)
+          };
+    
+          return fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+              // Handle the response data
+              console.log(data);
+              return data; // Optional: Return the response data
+            })
+            .catch(error => {
+              // Handle any errors
+              console.error('Error:', error);
+              throw error; // Optional: Throw the error to be caught by the caller
+            });
+        }
+    
+        function handleButtonClick() {
+          const url = '/internal/update_file/doc/'; // Replace with your API endpoint
+    
+          const content = {
+            name: document.getElementById("name").innerHTML,
+            content: document.getElementById("content").innerHTML
+          };
+    
+          sendPostRequest(url, content)
+            .then(responseData => {
+              // Handle the response data
+              //console.log('Response:', responseData);
+            })
+            .catch(error => {
+              // Handle any errors
+              console.error('Error:', error);
+            });
+        }
+      </script>
 {% endblock %}
