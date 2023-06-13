@@ -7,8 +7,11 @@ app = Flask(__name__)
 # Define a route and its corresponding view function
 @app.route('/')
 def hello():
-    folder_path = os.path.join("files/docs")
-    file_names = os.listdir(folder_path)
+    try:
+        folder_path = os.path.join("files/docs")
+        file_names = os.listdir(folder_path)
+    except:
+        os.makedirs("/files/docs")
     return render_template("home.html", file_names=file_names)
 
 @app.route('/docs/<filename>')
