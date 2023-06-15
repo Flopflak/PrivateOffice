@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Document Viewer{% endblock %}
+
+{% block head %}
+<style>
+  /* Style for the main container */
+  #mainDiv {
+    width: max-content;  /* Adjust the width as needed */
+    max-width: 90vw;
+    height: 65vh; /* Adjust the height as needed */
+    overflow-x: scroll;
+    overflow-y: scroll;
+    /*margin: 20px 30px 0px 30px;*/
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 32px rgba(0, 0, 0, 0.2);
+    padding: auto;
+    align-items: center;
+  }
+
+  /* Style for the smaller divs */
+  .cell {
+    width: 100px;
+    height: 32px;
+    background-color: lightgray;
+    border: 1px solid black;
+    float: left;
+    box-sizing: border-box;
+  }
+</style>
+{% endblock %}
+
+{% block header %}<h1 style="text-align: left;" contenteditable="true" id="name">{{ filename }}</h1>{% endblock %}
+
+{% block content %}
+    <div class="options"><button onclick="handleButtonClick()">Save</button><button onclick="window.location = '/'">Home</button></div>
+    <div id="mainDiv">
+      {% if content == "": %}
+        {% for i in range(0, 200*200) %}
+        <div class="cell" contenteditable="true"></div>
+        {% endfor %}
+      {% else %}
+        {{ content|safe }}
+      {% endif %}
+    </div>
+    <script>
+        function sendPostRequest(url, content) {
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(content)
+          };
+    
+          return fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+              // Handle the response data
+              console.log(data);
+              return data; // Optional: Return the response data
+            })
+            .catch(error => {
+              // Handle any errors
+              console.error('Error:', error);
+              throw error; // Optional: Throw the error to be caught by the caller
+            });
+        }
+    
+        function handleButtonClick() {
+          const url = '/internal/update_file/sheet/'; // Replace with your API endpoint
+    
+          const content = {
+            name: document.getElementById("name").innerHTML,
+            content: document.getElementById("mainDiv").innerHTML
+          };
+    
+          sendPostRequest(url, content)
+            .then(responseData => {
+              // Handle the response data
+              //console.log('Response:', responseData);
+            })
+            .catch(error => {
+              // Handle any errors
+              console.error('Error:', error);
+            });
+        }
+      </script>
+{% endblock %}

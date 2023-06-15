@@ -85,13 +85,21 @@
     color: white;
   }
 
-  .docs {
+  .file_select {
     background-color: rgb(220, 220, 220);
-    margin: auto;
+    margin: 20px;
     padding: 20px;
     border-radius: 15px;
     width: 25vw;
     text-align: left;
+    float: center;
+    box-sizing: border-box;
+  }
+
+  .file_select_parent {
+    display: flex;
+    width: min-content;
+    margin: auto;
   }
 
   .options {
