@@ -11,13 +11,15 @@ def hello():
         folder_path = os.path.join("files/docs")
         doc_names = os.listdir(folder_path)
     except:
-        os.makedirs("/files/docs")
+        os.makedirs("./files/docs")
+        doc_names = os.listdir(os.path.join("files/docs"))
 
     try:
         folder_path = os.path.join("files/sheets")
         sheet_names = os.listdir(folder_path)
     except:
-        os.makedirs("/files/docs")
+        os.makedirs("./files/sheets")
+        sheet_names = os.listdir(os.path.join("files/sheets"))
     return render_template("home.html", doc_names=doc_names, sheet_names=sheet_names)
 
 @app.route('/docs/<filename>')
