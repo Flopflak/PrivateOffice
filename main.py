@@ -10,6 +10,10 @@ def hello():
     try:
         folder_path = os.path.join("files/docs")
         doc_names = os.listdir(folder_path)
+    except:
+        os.makedirs("/files/docs")
+
+    try:
         folder_path = os.path.join("files/sheets")
         sheet_names = os.listdir(folder_path)
     except:
