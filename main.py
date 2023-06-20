@@ -4,6 +4,10 @@ import os, hashlib
 # Create an instance of the Flask class
 app = Flask(__name__)
 
+def is_file_in_directory(directory, filename):
+    filepath = os.path.join(directory, filename)
+    return os.path.isfile(filepath)
+
 # Define a route and its corresponding view function
 @app.route('/')
 def index():
@@ -118,6 +122,18 @@ def create_file():
                 f.write("")
                 f.close()
             return redirect("/sheets/" + fn+ft)
+        
+@app.route("/delete_file/<filename>")
+def delete_file(filename):
+    user = request.cookies.get("user")
+    if is_file_in_directory(f"./files/{user}/docs/", filename):
+        os.remove(f"./files/{user}/docs/{filename}")
+    elif is_file_in_directory(f"./files/{user}/sheets/", filename):
+        os.remove(f"./files/{user}/sheets/{filename}")
+    else:
+        return "File not found</br><a href='/'>Go Home</a>"
+    
+    return redirect(url_for("index"))
 
 # Run the Flask application if this script is executed directly
 if __name__ == '__main__':

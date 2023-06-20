@@ -5,7 +5,7 @@
 {% block header %}<h1 style="text-align: left;" contenteditable="true" id="name">{{ filename }}</h1>{% endblock %}
 
 {% block content %}
-    <div class="options"><button onclick="handleButtonClick()">Save</button><button onclick="window.location = '/'">Home</button></div>
+    <div class="options"><button onclick="handleButtonClick()">Save</button><button onclick="window.location = '/'">Home</button><button onclick="window.location = '/delete_file/{{ filename }}'">Delete</button></div>
     <div class="text_editor">
         <p contenteditable="true" id="content">{{ content }}</p>
     </div>
