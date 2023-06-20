@@ -143,6 +143,20 @@
     box-shadow: 0px 5px 32px rgba(0, 0, 0, 0.2);
     text-align: left;
   }
+
+  .form {
+    margin: 100px auto 0px auto;
+    padding: 10px;
+    height: fit-content;
+    width: min-content;
+    border-radius: 15px;
+    box-shadow: 0px 5px 32px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    scale: 150%;
+    > input {
+      margin: 10px 20px 5px 20px;
+    }
+  }
   
   /* Add a responsive media query */
   @media (max-width: 768px) {
