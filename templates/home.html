@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block header %}
+  <div class="user-image">
+    <a href="/user_settings"><img src="/get_user_profile_pic/{{ username }}"></a>
+  </div>
   <h1>{% block title %}Home{% endblock %}</h1>
   <h2>Hi {{ username }}</h2>
-  <a href="/logout">Log out</a>
 {% endblock %}
 
 {% block content %}

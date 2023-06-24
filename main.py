@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response
+from flask import Flask, render_template, request, redirect, url_for, make_response, send_file
 import os, hashlib
 
 # Create an instance of the Flask class
@@ -122,6 +122,48 @@ def create_file():
                 f.write("")
                 f.close()
             return redirect("/sheets/" + fn+ft)
+        
+@app.route("/user_settings", methods=["POST", "GET"])
+def user_settings():
+    if request.method == "GET":
+        user = request.cookies.get("user")
+
+        username = open(f"./users/{user}.usr", "r").read()
+
+        data = {
+            "username": username
+        }
+
+        return render_template("user_settings.html", data=data)
+    else:
+        data = request.json
+        try:
+            try:
+                try:
+                    username = data["username"]
+                except:
+                    print(Exception("Cloud not get username from request"))
+                    return "", 500
+                try:
+                    with open(f"./users/{request.cookies.get('user')}.usr", "w") as f:
+                        f.write(username)
+                        f.close()
+                except:
+                    print(Exception("Cloud not write to file"))
+                    return "", 500
+            except:
+                print(Exception("Something went wrong"))
+                return "", 500
+            return "", 200
+        except:
+            return "", 500
+        
+@app.route("/get_user_profile_pic/<user>")
+def get_user_profile_pic(user):
+    try:
+        return send_file(f"./users/{user}.profilepic")
+    except:
+        return send_file("./static/profile-pic.webp")
         
 @app.route("/delete_file/<filename>")
 def delete_file(filename):

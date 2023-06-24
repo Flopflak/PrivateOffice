@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}User settings{% endblock %}</h1>
+  <a href="/">Home</a>
+{% endblock %}
+
+{% block content %}
+  <script>
+    function submit_username() {
+        data = document.getElementById("username").value;
+        data = {"username": data};
+        sendPostRequest("./user_settings", data)
+        alert("Keep in mind that changing this wont change your login credintials!");
+    }
+  </script>
+  <div class="settings_div">
+    <div class="settings_item_div" style="text-align: center;">
+      <a href="/logout">Log out</a>
+    </div>
+    <div class="settings_item_div">
+        <label for="username">Display name</label></br><input title="Keep in mind that changing this wont change your login credintials!" onchange="submit_username();" type="text" value="{{ data['username'] }}" id="username" name="username">
+    </div>
+  </div>
+{% endblock %}
