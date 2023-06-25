@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Group creation{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="docs">
+    <form method="post" style="text-align: center;" enctype="multipart/form-data">
+        <label for="groupname">Name of the group</label></br>
+        <input type="text" name="groupname" style="margin-bottom: 5px; width: 250px; height: 30px;"></br></br>
+        <input type="submit" value="Create" class="button">
+    </form>
+  </div>
+{% endblock %}

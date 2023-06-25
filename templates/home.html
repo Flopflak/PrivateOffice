@@ -32,5 +32,15 @@
           </ul>
       </div>
     </div>
+    <div class="file_select">
+      <a href="/create_group" style="font-weight: bolder; float: right; font-size: large; margin-top: 1.5px;">+</a>
+      <h2>Groups</h2>
+      <div style="padding-left: 15px;">
+          <ul>
+              {% for group_name in group_names %}
+                  <li><a href="{{ url_for('group', group=group_name) }}">{{ group_name }}</a></li>
+              {% endfor %}
+          </ul>
+      </div>
   </div>
 {% endblock %}

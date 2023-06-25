@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <div class="user-image">
+    <a href="/user_settings"><img src="/get_user_profile_pic/{{ username }}"></a>
+  </div>
+  <h1>{% block title %}{{ group_name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="file_select_parent">
+    <div class="file_select">
+      <h2>Add user to group</h2>
+      <form style="padding-left: 15px; text-align: center;" action="/add_to_group/{{ group_name }}" method="post">
+        <br><label for="username" style="font-size: large">Display name:</label><br>
+        <input type="text" name="username" style="margin-bottom: 5px; margin-top: 5px; width: 80%; height: 30px; font-size: large;"><br>
+        <input type="submit" value="Add" style="width: 120px; height: 20px; font-size: large;">
+      </form>
+    </div>
+    <div class="file_select">
+      <a href="/group/{{ group_name }}/create_file" style="font-weight: bolder; float: right; font-size: large; margin-top: 1.5px;">+</a>
+      <h2>Documents</h2>
+      <div style="padding-left: 15px;">
+          <ul>
+              {% for file_name in doc_names %}
+                  <li><a href="{{ url_for('view_group_doc', filename=file_name, group=group_name) }}">{{ file_name }}</a></li>
+              {% endfor %}
+          </ul>
+      </div>
+    </div>
+    <div class="file_select">
+      <a href="/group/{{ group_name }}/create_file" style="font-weight: bolder; float: right; font-size: large; margin-top: 1.5px;">+</a>
+      <h2>Sheets</h2>
+      <div style="padding-left: 15px;">
+          <ul>
+              {% for file_name in sheet_names %}
+                  <li><a href="{{ url_for('view_group_sheet', filename=file_name, group=group_name) }}">{{ file_name }}</a></li>
+              {% endfor %}
+          </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
