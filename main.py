@@ -53,9 +53,16 @@ def login():
         user_hash = hashlib.sha256((usr+pswd).encode("utf-8")).hexdigest()
         resp = make_response(redirect("/"))
         resp.set_cookie("user", user_hash)
-        with open(f"users/{user_hash}.usr", "w") as f:
-            f.write(usr)
-            f.close()
+        try:
+            with open(f"users/{user_hash}.usr", "w") as f:
+                f.write(usr)
+                f.close()
+        except:
+            os.makedirs("./users/")
+            with open(f"users/{user_hash}.usr", "w") as f:
+                f.write(usr)
+                f.close()
+
         return resp
 
 @app.route("/logout")
