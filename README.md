@@ -9,6 +9,9 @@ Create and edit plain text documents. These are only accesible to your account a
 Use sheets to manage all your data in more clear way.
 ### 👥 User system
 Log in to your account to view, edit or delete your files.
+### 👥 Document Collaboration: 
+PrivateOffice offers collaboration features, enabling multiple users to work on the same document.
+
 
 ## Planned Features
 ### 📝 Text Styling: 
@@ -20,8 +23,8 @@ PrivateOffice will support variety of file types like images and so on.
 ### 🗂️ File Management: 
 Users will be able to organize their documents into folders and subfolders, making it easier to categorize and locate specific files.
 
-### 👥 Document Collaboration: 
-PrivateOffice will support collaboration features, enabling multiple users to work on the same document simultaneously. Users will be able to track changes, leave comments, and suggest edits.
+### 👥 Advanced Document Collaboration: 
+PrivateOffice will support advanced collaboration features, enabling multiple users to work on the same document simultaneously. Users will be able to track changes, leave comments, and suggest edits.
 
 ### 🕒 Version History: 
 PrivateOffice will track version history for each document, allowing users to revert to previous versions if necessary. This feature ensures that document changes can be tracked and recovered in case of accidental modifications or data loss.
