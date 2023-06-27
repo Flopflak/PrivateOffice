@@ -21,5 +21,11 @@
     <div class="settings_item_div">
         <label for="username">Display name</label></br><input title="Keep in mind that changing this wont change your login credintials!" onchange="submit_username();" type="text" value="{{ data['username'] }}" id="username" name="username">
     </div>
+    <div class="settings_item_div">
+      <form action="/internal/upload_profile_pic" method="post" enctype="multipart/form-data">
+        <label for="profilepic">Profile picture</label></br><input type="file" id="profilepic" name="profilepic">
+        <input type="submit" value="Submit!">
+      </form>
+    </div>
   </div>
 {% endblock %}

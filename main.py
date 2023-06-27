@@ -3,6 +3,7 @@ import os, hashlib, json
 
 # Create an instance of the Flask class
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = "./users"
 
 def is_file_in_directory(directory, filename):
     filepath = os.path.join(directory, filename)
@@ -113,6 +114,24 @@ def update_sheet():
     
     return "", 200
 
+@app.route("/internal/upload_profile_pic", methods=["POST"])
+def upload_profile_pic():
+    user = request.cookies.get("user")
+    try:
+        username = ""
+        print(user)
+        with open(f"users/{user}.usr", "r") as f:
+            username = f.read()
+    except:
+        return redirect("/login")
+    
+    file = request.files['profilepic']
+    if file.filename == "":
+        return "No file submited! <a href='/user_settings'>Go back</a>"
+    else:
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], username + ".webp"))
+        return redirect("/user_settings")
+
 @app.route("/create_file", methods=["POST", "GET"])
 def create_file():
     if request.method == "GET":
@@ -170,7 +189,7 @@ def user_settings():
 @app.route("/get_user_profile_pic/<user>")
 def get_user_profile_pic(user):
     try:
-        return send_file(f"./users/{user}.profilepic")
+        return send_file(f"./users/{user}.webp")
     except:
         return send_file("./static/profile-pic.webp")
         
