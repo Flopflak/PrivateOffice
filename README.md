@@ -12,27 +12,6 @@ Log in to your account to view, edit or delete your files.
 ### 👥 Document Collaboration: 
 PrivateOffice offers collaboration features, enabling multiple users to work on the same document.
 
-
-## Planned Features
-### 📝 Text Styling: 
-PrivateOffice will allow users to edit style their text documents, providing a range of formatting options such as font style, size, color, alignment, bullet points, and numbering.
-
-### 🗄️ Other Document Types:
-PrivateOffice will support variety of file types like images and so on.
-
-### 🗂️ File Management: 
-Users will be able to organize their documents into folders and subfolders, making it easier to categorize and locate specific files.
-
-### 👥 Advanced Document Collaboration: 
-PrivateOffice will support advanced collaboration features, enabling multiple users to work on the same document simultaneously. Users will be able to track changes, leave comments, and suggest edits.
-
-### 🕒 Version History: 
-PrivateOffice will track version history for each document, allowing users to revert to previous versions if necessary. This feature ensures that document changes can be tracked and recovered in case of accidental modifications or data loss.
-Search Functionality: PrivateOffice will provide a search feature, enabling users to find specific documents based on their titles or content.
-
-### 📱 Responsive User Interface: 
-The interface of PrivateOffice will be designed to be responsive, ensuring optimal user experience across different devices, including desktop computers, tablets, and smartphones.
-
 ## Getting Started
 
 To set up and run PrivateOffice on your local machine, follow these steps:
