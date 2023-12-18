@@ -1,13 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, send_file
 import os, hashlib, json
+import functions
 
 # Create an instance of the Flask class
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = "./users"
-
-def is_file_in_directory(directory, filename):
-    filepath = os.path.join(directory, filename)
-    return os.path.isfile(filepath)
 
 # Define a route and its corresponding view function
 @app.route('/')
@@ -203,9 +200,9 @@ def get_user_profile_pic(user):
 @app.route("/delete_file/<filename>")
 def delete_file(filename):
     user = request.cookies.get("user")
-    if is_file_in_directory(f"./files/{user}/docs/", filename):
+    if functions.is_file_in_directory(f"./files/{user}/docs/", filename):
         os.remove(f"./files/{user}/docs/{filename}")
-    elif is_file_in_directory(f"./files/{user}/sheets/", filename):
+    elif functions.is_file_in_directory(f"./files/{user}/sheets/", filename):
         os.remove(f"./files/{user}/sheets/{filename}")
     else:
         return "File not found</br><a href='/'>Go Home</a>"
@@ -245,9 +242,9 @@ def delete_group_file(filename, group):
     if request.cookies.get('user') not in user_list:
         return redirect("/")
 
-    if is_file_in_directory(f"./groups/{group}/docs/", filename):
+    if functions.is_file_in_directory(f"./groups/{group}/docs/", filename):
         os.remove(f"./groups/{group}/docs/{filename}")
-    elif is_file_in_directory(f"./groups/{group}/sheets/", filename):
+    elif functions.is_file_in_directory(f"./groups/{group}/sheets/", filename):
         os.remove(f"./groups/{group}/sheets/{filename}")
     else:
         return "File not found</br><a href='/'>Go Home</a>"
@@ -364,15 +361,18 @@ def add_to_group(group):
 
     users = os.listdir("./users/")
     for user in users:
-        displayname = open("./users/"+user, "r").read()
-        if displayname == user_to_add:
-            json_file = open("./groups/groups.json", "r").read()
-            json_data = json.loads(json_file)
-            user_list = json_data[group]
-            user_list.append(user.split(".")[0])
-            json_data[group] = user_list
-            json_file = json.dumps(json_data)
-            open("./groups/groups.json", "w").write(json_file)
+        try:
+            displayname = open("./users/"+user, "r").read()
+            if displayname == user_to_add:
+                json_file = open("./groups/groups.json", "r").read()
+                json_data = json.loads(json_file)
+                user_list = json_data[group]
+                user_list.append(user.split(".")[0])
+                json_data[group] = user_list
+                json_file = json.dumps(json_data)
+                open("./groups/groups.json", "w").write(json_file)
+        except:
+            pass # Pass for now. I'll fix it later.
 
     return redirect("/group/"+group)
 
