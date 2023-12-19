@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, send_file
 import os, hashlib, json
 import functions
+from config import config
 
 # Create an instance of the Flask class
 app = Flask(__name__)
@@ -378,4 +379,8 @@ def add_to_group(group):
 
 # Run the Flask application if this script is executed directly
 if __name__ == '__main__':
-    app.run(debug=True, port=80)
+    if config["production"]:
+        from waitress import serve
+        serve(app, host="0.0.0.0", port=80)
+    else:
+        app.run(debug=True, port=80)

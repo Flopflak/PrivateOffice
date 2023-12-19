@@ -4,7 +4,7 @@ PrivateOffice is a self-hosted alternative to Google Office or Microsoft Office,
 
 ## Features 
 ### 📝 Documents
-Create and edit plain text documents. These are only accesible to your account and no one else, apart from the server admin.
+Create and edit plain text documents. These are only accessible to your account and no one else, apart from the server admin.
 ### 📊 Sheets
 Use sheets to manage all your data in more clear way.
 ### 👥 User system
@@ -24,6 +24,8 @@ To set up and run PrivateOffice on your local machine, follow these steps:
         - For Unix or Linux: ``` source venv/bin/activate ```
 3. Run the application: ``` python main.py ```
 4. Open your web browser and visit http://localhost to access PrivateOffice.
+
+- ⚙️ If you want to modify the code yourself, change option ```production``` to ```False``` for better experience.
 
 ## License
 
